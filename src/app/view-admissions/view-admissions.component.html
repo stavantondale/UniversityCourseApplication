@@ -1,0 +1,61 @@
+<div id="filter" style="width: 50%; margin: 0 auto;">
+    <form #filterForm="ngForm">
+        <div class="form-group">
+            <label>View Applications by: </label>
+            <select class="form-control" #filter="ngModel" ngModel name="filter" (change)="onFilterChange(filter.value)">
+                <option value="">Select Filter</option>
+                <option value="date">Date</option>
+                <option value="course">Course</option>
+            </select>
+        </div>
+
+        <div *ngIf="filter.value !='' " class="form-group">
+                <div *ngIf="filter.value=='date'" id="dateFilter">
+                    <input type="date" class="form-control" name="date" #date="ngModel" ngModel />
+                    <div  class="mt-2">
+                        <button type="submit" class="btn btn-primary" (click)="searchByDate(date.value)">Search Admissions</button>
+                    </div>
+                </div>
+            <div *ngIf="filter.value=='course'">
+                <select #course="ngModel" class="form-control" ngModel name="course">
+                    <option value="">Select Course</option>
+                    <option *ngFor="let course of courses" [ngValue]="course.courseId">{{course.courseName}}</option>
+                </select>
+                <div class="mt-2">
+                    <button type="submit" class="btn btn-primary" (click)="searchByCourse(course.value)">Search Admissions</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="viewAdmissions" *ngIf="isTableDisplayed && filter.value !=''">
+    <table class="table table-hover table-bordered text-center">
+        <thead>
+            <tr>
+                <th>Applicant ID</th>
+                <th>Applicant Name</th>
+                <th>Degree</th>
+                <th>Percentage</th>
+                <th>Contact Number</th>
+                <th>Course Applied</th>
+                <th>Admission Date</th>
+                <th>Admission Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of applications">
+                <td>{{a.applicant.applicantId}}</td>
+                <td>{{a.applicant.applicantName}}</td>
+                <td>{{a.applicant.applicantDegree}}</td>
+                <td>{{a.applicant.applicantGraduationPercent}}</td>
+                <td>{{a.applicant.mobileNumber}}</td>
+                <td>{{a.courseName}}</td>
+                <td>{{a.applicant.admission.admissionDate}}</td>
+                <td>{{a.applicant.status}}</td>
+            </tr>
+            <tr *ngIf="applications.length==0">
+                <td colspan="8" class="text-center">No applications found</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

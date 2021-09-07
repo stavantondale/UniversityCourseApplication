@@ -1,0 +1,59 @@
+<div id="navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a routerLink="" class="navbar-brand">University Course Application</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ml-auto">
+                <div *ngIf="isUserLoggedIn() && isApplicant()" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Applicant
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" routerLink="">View Application</a>
+                        <a class="dropdown-item" routerLink="">View Application Status</a>
+                    </div>
+                </div>
+                <div *ngIf="isUserLoggedIn() && isUniversityStaff()" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        University Staff Member
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" routerLink="">Add Staff</a>
+                        <a class="dropdown-item" routerLink="">Update Staff</a>
+                        <a class="dropdown-item" routerLink="">View All Staff</a>
+                    </div>
+                </div>
+                <div *ngIf="isUserLoggedIn() && isAdmissionCommitteeMember()" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admission Committee Member
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" routerLink="">Add Member</a>
+                        <a class="dropdown-item" routerLink="">Update Member</a>
+                        <a class="dropdown-item" routerLink="">View All Members</a>
+                        <a class="dropdown-item" routerLink="">View All Applications</a>
+                    </div>
+                </div>
+                <div *ngIf="isUserLoggedIn() && isUniversityStaff()" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Course
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" routerLink="">Add Course</a>
+                        <a class="dropdown-item" routerLink="">Update Course</a>
+                        <a class="dropdown-item" routerLink="">View All Courses</a>
+                        <a class="dropdown-item" routerLink="">Remove Course</a>
+                    </div>
+                </div>
+                <a *ngIf="!isUserLoggedIn()" class="nav-item nav-link" routerLink="login">Login</a>
+                <a *ngIf="isUserLoggedIn()" class="nav-item nav-link" routerLink="logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+</div>
