@@ -1,0 +1,46 @@
+
+
+    <!-- Course Details page -->
+<div class="get-course-page" >
+
+  
+    <div >
+        <h2>{{course.courseName}}</h2>
+        <div class="course-info d-flex justify-content-between align-items-center ">
+            <h5>Course Id:</h5>
+            <p>{{course.courseId}}</p> 
+
+        </div>
+        <div class="course-info d-flex justify-content-between align-items-center">
+            <h5>Course Duration (Months):</h5>
+            <p>{{course.courseDuration}}</p>
+        </div>
+        <div class="course-info d-flex justify-content-between align-items-center">
+            <h5>Course Start Date:</h5>
+            <p>{{course.courseStartDate}}</p>
+        </div>
+        <div class="course-info d-flex justify-content-between align-items-center">
+            <h5>Course End Date:</h5>
+            <p>{{course.courseEndDate}}</p>
+        </div>
+        <div class="course-info d-flex justify-content-between align-items-center">
+            <h5>Course Fee (₹):</h5>
+            <p>{{course.courseFees}}</p>
+        </div>
+        <!--
+  <div class="form-group">
+    <label>Course Thumbnail<span class="required-field">*</span></label>
+    <input type="file" id="course-pic" name="channel-img" class="form-control">
+    <label for="course-pic" class="choose-icon"><i class="fa fa-camera" aria-hidden="true"></i></label>
+  </div>
+  -->
+        <button *ngIf="!isUniversityStaff() && !isAdmissionCommitteeMember()"type="submit" class="btn btn-success" style="background-color: #054d95;" (click)="apply(course)">Apply</button>
+        <button *ngIf="isUniversityStaff()"type="submit" class="btn btn-success" style="background-color: #054d95;" (click)=update(course)>Update</button>
+        <button *ngIf="isUniversityStaff()"type="button" class="btn btn-danger"  (click)=delete(course)>Delete</button>
+    </div>
+
+        
+</div>
+
+
+

@@ -1,23 +1,27 @@
-<div id="filter" style="width: 50%; margin: 0 auto;">
+<div id="viewAdmissions">
+  <h3 class="text-center mt-2">Admissions</h3>
+<div class="row" style="margin: 0 auto; width: 95%;">
+<div id="filter" class="col-md-6" >
     <form #filterForm="ngForm">
         <div class="form-group">
             <label>View Applications by: </label>
-            <select class="form-control" #filter="ngModel" ngModel name="filter" (change)="onFilterChange(filter.value)">
+            <select class="form-control" #filter="ngModel" [(ngModel)]="filter1" ngModel name="filter" (change)="onFilterChange(filter.value)">
                 <option value="">Select Filter</option>
                 <option value="date">Date</option>
                 <option value="course">Course</option>
+                <option value="status">Application Status</option>
             </select>
         </div>
 
         <div *ngIf="filter.value !='' " class="form-group">
                 <div *ngIf="filter.value=='date'" id="dateFilter">
-                    <input type="date" class="form-control" name="date" #date="ngModel" ngModel />
+                    <input type="date" class="form-control" name="date" #date="ngModel" ngModel [(ngModel)]="date1" />
                     <div  class="mt-2">
                         <button type="submit" class="btn btn-primary" (click)="searchByDate(date.value)">Search Admissions</button>
                     </div>
                 </div>
             <div *ngIf="filter.value=='course'">
-                <select #course="ngModel" class="form-control" ngModel name="course">
+                <select #course="ngModel" class="form-control" ngModel name="course" [(ngModel)]="course1">
                     <option value="">Select Course</option>
                     <option *ngFor="let course of courses" [ngValue]="course.courseId">{{course.courseName}}</option>
                 </select>
@@ -25,37 +29,60 @@
                     <button type="submit" class="btn btn-primary" (click)="searchByCourse(course.value)">Search Admissions</button>
                 </div>
             </div>
+            <div *ngIf="filter.value=='status'">
+                <select #status='ngModel' [(ngModel)]="status1" class="form-control" ngModel name="status">
+                    <option value="">Select Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="Applied">Applied</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+                <div class="mt-2">
+                    <button type="submit" class="btn btn-primary" (click)="searchByStatus(status.value)">Search Admissions</button>
+                </div>
+            </div>
         </div>
     </form>
 </div>
-<div id="viewAdmissions" *ngIf="isTableDisplayed && filter.value !=''">
-    <table class="table table-hover table-bordered text-center">
+<div class="col-md-6">
+    <div class="form-group"> 
+    <label>Search Application</label>
+    <input type="text" class="form-control" id="searchCourse" placeholder="Search Application by Name" [(ngModel)]="searchQuery">
+</div>
+</div>
+</div>
+<div id="admissions" class="table-responsive">
+    <table class="table table-hover text-center">
         <thead>
             <tr>
-                <th>Applicant ID</th>
-                <th>Applicant Name</th>
+                <th (click)="sort('applicant.applicantId', order)">Applicant ID <i class="bi bi-sort-alpha-down"></i></th>
+                <th (click)="sort('applicant.applicantName', order)" >Name <i class="bi bi-sort-alpha-down"></i></th>
                 <th>Degree</th>
-                <th>Percentage</th>
-                <th>Contact Number</th>
-                <th>Course Applied</th>
-                <th>Admission Date</th>
-                <th>Admission Status</th>
+                <th (click)="sort('applicant.applicantGraduationPercent', order)">Percentage <i class="bi bi-sort-alpha-down"></i></th>
+                <th>Contact</th>
+                <th (click)="sort('courseName', order)">Course Applied <i class="bi bi-sort-alpha-down"></i></th>
+                <th (click)="sort('applicant.admission.admissionDate', order)">Admission Date <i class="bi bi-sort-alpha-down"></i></th>
+                <th (click)="sort('applicant.status', order)">Admission Status <i class="bi bi-sort-alpha-down"></i></th>
+                <th colspan="2">Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let a of applications">
+            <tr *ngFor="let a of applications | orderBy:column:order | searchApplication:searchQuery">
                 <td>{{a.applicant.applicantId}}</td>
                 <td>{{a.applicant.applicantName}}</td>
                 <td>{{a.applicant.applicantDegree}}</td>
                 <td>{{a.applicant.applicantGraduationPercent}}</td>
                 <td>{{a.applicant.mobileNumber}}</td>
                 <td>{{a.courseName}}</td>
-                <td>{{a.applicant.admission.admissionDate}}</td>
+                <td>{{a.applicant.admission.admissionDate | date: 'dd/MM/yyyy'}}</td>
                 <td>{{a.applicant.status}}</td>
+                <td *ngIf="a.applicant.status.toString()!='CONFIRMED'"><button type="button" class="btn btn-success"(click)="confirmAdmission(a.applicant.admission.admissionId)">Accept</button></td>
+                <td *ngIf="a.applicant.status.toString()!='REJECTED'"><button type="button" class="btn btn-danger" (click)="rejectAdmission(a.applicant.admission.admissionId)">Reject</button></td>
             </tr>
             <tr *ngIf="applications.length==0">
                 <td colspan="8" class="text-center">No applications found</td>
             </tr>
         </tbody>
     </table>
+</div>
 </div>

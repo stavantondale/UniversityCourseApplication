@@ -1,0 +1,62 @@
+    <div class="add-member-page">
+      
+      <form #registerForm="ngForm" class="was-validated" (ngSubmit)="login()">
+        <h3 >Add Committee Member Form</h3>
+        <div class="form-group">
+          <label for="regname">Enter Full Name:<span class="required-field">*</span></label>
+          <input type="text" class="form-control" id="fullname" size="40" placeholder="Enter Full Name"
+            #fullname="ngModel" [(ngModel)]="member.adminName" #username="ngModel" name="fullname" required minlength="5"
+            pattern="[a-zA-Z ]*">
+            <div class="text-danger" *ngIf="fullname.touched && fullname.errors">
+              <label for="fullName">Full name cannot contain numbers.</label>
+            </div>
+            <div class="text-danger" *ngIf="fullname.errors?.minlength">
+              <label for="fullName">Full name needs to have minimum 5 characters.</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regmail">Enter Contact Email:<span class="required-field">*</span></label>
+          <input type="text" class="form-control" id="mailcontact" size="40" placeholder="Enter Email Address"
+            [(ngModel)]="member.adminContact" email #prmEmail="ngModel" name="mailcontact" required
+            pattern="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$">
+            <div class="text-danger" *ngIf="prmEmail.touched && prmEmail.errors">
+              <label for="prmEmail">Firmly enter a valid Email Address.</label>
+            </div>
+        </div>
+        <!-- <div *ngIf="prmEmail.errors?.email">Primary Email not valid.</div> -->
+        
+        <!-- <div *ngIf="mailcontact.matc" class="invalid-feedback">Please fill out this field.</div> -->
+
+        <div class="form-group">
+          <label for="uname">Enter User Name:<span class="required-field">*</span></label>
+          <input type="text" class="form-control" id="username" size="40" placeholder="Enter User Name"
+            [(ngModel)]="member.user.username" #usernma="ngModel" name="username" required pattern="[a-zA-Z0-9_.]*">
+            <div class="text-danger" *ngIf="username.touched && username.errors">
+              <label for="username">username cannot be empty.</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label for="pwd">Password:<span class="required-field">*</span></label>
+          <input type="password" class="form-control" id="pwd" size="40" placeholder="Enter password"
+            [(ngModel)]="member.user.password" #password="ngModel" name="password" required
+            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$">
+            <!-- <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Password must contain at least one Capital letter(A-z) and small letters (a-z)
+            ,<br> one Special Symbol ,<br> one number(0-9) ,<br> and must be at least 8 characters in length</div> -->
+            <div class="text-danger" *ngIf="password.touched && password.errors">
+              <label for="password">Password must contain at least one Capital letter(A-z) and small letters (a-z),<br> one Special Symbol ,<br> one number(0-9) ,<br> and must be at least 8 characters in length.</label>
+            </div>
+          </div>
+        
+        <!-- <div class="form-group form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" name="remember" required> Remeber Me
+            </label>
+          </div> -->
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Add Committee Member</button>
+        </div>
+      </form>
+</div>

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { User } from 'src/models/User';
 import { Role } from '../models/Role';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class LoginService {
   token=null;
   private baseUrl:string = 'http://localhost:8590/login/';
  headers_object = new HttpHeaders();
-  constructor(private httpService: HttpClient) { }
+  constructor(private httpService: HttpClient,private router:Router) { }
   
   authenticate(username:any, password:any) {
     this.user=new User(1,username,password,Role.UNIVERSITYSTAFFMEMBER);
@@ -43,6 +44,7 @@ export class LoginService {
   logOut() {
     sessionStorage.removeItem("username");
     sessionStorage.clear();
+    this.router.navigate(['login']);
   }
 
   isApplicant():boolean{

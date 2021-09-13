@@ -8,7 +8,7 @@ import { LoginService } from 'src/services/login.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  user:User=new User(1,'rutuja','Rutujs',Role.UNIVERSITYSTAFFMEMBER);
+  user:User=new User(1,'','',Role.UNIVERSITYSTAFFMEMBER);
   
   constructor(private myService:LoginService,private router:Router){
 

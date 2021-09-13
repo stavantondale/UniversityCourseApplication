@@ -1,6 +1,10 @@
 <div id="navbar">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a routerLink="" class="navbar-brand">University Course Application</a>
+    <nav class="navbar navbar-expand-lg nav-item active ">
+        
+        <a *ngIf="!isUserLoggedIn()" routerLink="" class="navbar-brand" id="home"><i class="bi bi-house-door mr-1" style="font-size: 30px;"></i> University Course Application</a>
+        <a *ngIf="isUserLoggedIn() && isApplicant()" routerLink="homeApplicant" class="navbar-brand" id="home"><i class="bi bi-house-door mr-1" style="font-size: 30px;"></i> University Course Application</a>
+        <a *ngIf="isUserLoggedIn() && isUniversityStaff()" routerLink="staffMemberHomePage" class="navbar-brand" id="home"><i class="bi bi-house-door mr-1" style="font-size: 30px;"></i> University Course Application</a>
+        <a *ngIf="isUserLoggedIn() && isAdmissionCommitteeMember()" routerLink="memberHome" class="navbar-brand" id="home"><i class="bi bi-house-door mr-1" style="font-size: 30px;"></i> University Course Application</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -12,19 +16,22 @@
                         Applicant
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" routerLink="">View Application</a>
-                        <a class="dropdown-item" routerLink="">View Application Status</a>
+                        <a class="dropdown-item" routerLink="viewApplicantDetails">View Application</a>
+                        <a class="dropdown-item" routerLink="updateApplicant">Update Applicant</a>
                     </div>
                 </div>
+
+
                 <div *ngIf="isUserLoggedIn() && isUniversityStaff()" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         University Staff Member
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" routerLink="">Add Staff</a>
-                        <a class="dropdown-item" routerLink="">Update Staff</a>
-                        <a class="dropdown-item" routerLink="">View All Staff</a>
+                        <a class="dropdown-item" routerLink="addStaff">Add Staff</a>
+                        <a class="dropdown-item" routerLink="updateStaff">Update Staff</a>
+                        <a class="dropdown-item" routerLink="viewAllStaff">View All Staff</a>
+                        <a class="dropdown-item" routerLink="removeStaff">Delete Account</a>
                     </div>
                 </div>
                 <div *ngIf="isUserLoggedIn() && isAdmissionCommitteeMember()" class="nav-item dropdown">
@@ -33,26 +40,61 @@
                         Admission Committee Member
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" routerLink="">Add Member</a>
-                        <a class="dropdown-item" routerLink="">Update Member</a>
-                        <a class="dropdown-item" routerLink="">View All Members</a>
-                        <a class="dropdown-item" routerLink="">View All Applications</a>
+                        <a class="dropdown-item" routerLink="addCommitteeMember">Add Member</a>
+                        <a class="dropdown-item" routerLink="updateCommitteeMember">Update Member</a>
+                        <a class="dropdown-item" routerLink="viewAllMembers">All Members</a>
+                        <a class="dropdown-item" routerLink="viewAdmissions">View All Applications</a>
+                        
                     </div>
                 </div>
+
+
                 <div *ngIf="isUserLoggedIn() && isUniversityStaff()" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Course
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" routerLink="">Add Course</a>
-                        <a class="dropdown-item" routerLink="">Update Course</a>
-                        <a class="dropdown-item" routerLink="">View All Courses</a>
-                        <a class="dropdown-item" routerLink="">Remove Course</a>
+                        <a class="dropdown-item" routerLink="addCourse">Add Course</a>
+                        <a class="dropdown-item" routerLink="allCourse">All Courses</a>   
+                        <a class="dropdown-item" routerLink="totalcost">Cost Of Courses</a>
                     </div>
                 </div>
-                <a *ngIf="!isUserLoggedIn()" class="nav-item nav-link" routerLink="login">Login</a>
-                <a *ngIf="isUserLoggedIn()" class="nav-item nav-link" routerLink="logout">Logout</a>
+                
+
+
+                 
+                <a *ngIf="!isUserLoggedIn()" class="nav-item nav-link pl-1" style="margin-left: 30px;" href="allCourse"><i class="bi bi-book mr-1"></i>All Courses</a>
+                <a *ngIf="!isUserLoggedIn()" class="nav-item nav-link pl-1" style="margin-left: 30px;" href="#aboutus"><i class="bi bi-info-circle mr-1"></i>About</a>
+                <a *ngIf="!isUserLoggedIn()" class="nav-item nav-link pl-1" style="margin-left: 30px;" href="#contact" ><i class="bi bi-telephone mr-1"></i>Contact</a>
+                <a *ngIf="!isUserLoggedIn()" class="nav-item nav-link pl-1" style="margin-left: 30px;" routerLink="login"><i class="bi bi-box-arrow-in-right mr-1"></i>Login</a>
+                <!-- <a *ngIf="isUserLoggedIn()" class="nav-item nav-link pl-1"  routerLink="logout">Logout</a> -->
+
+                <div *ngIf="isUserLoggedIn()" class="nav-item dropdown">
+                    <a  class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">{{username}}</a>
+                    <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" routerLink="logout">Logout</a>
+                        
+                    </div>
+                
+
+                </div>
+
+                <div *ngIf="!isUserLoggedIn()" class="nav-item dropdown"style="margin-left: 30px;">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"><i class="bi bi-person-lines-fill mr-1"></i>Register</a>
+                    <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" routerLink="allCourse">Applicant</a>
+                        <a class="dropdown-item" routerLink="addStaff">Unversity Staff Member</a>
+                        <a class="dropdown-item" routerLink="addCommitteeMember">Admission Committee Member</a>
+                    </div>
+                   
+
+
+                    
+    
+                </div>
             </div>
         </div>
     </nav>

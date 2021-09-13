@@ -1,0 +1,21 @@
+i{cursor: pointer;}
+.table-responsive{
+    background-color: #FFF;
+}
+#title{
+  width: 95%;
+  margin: 1% auto 0;
+}
+label{
+  font-size:40px;
+  font-weight: bold;
+  
+}
+.row{
+ 
+  width: 95%;
+  margin: 1% auto;
+}
+.table-responsive th{
+  font-weight: normal;
+}

@@ -1,0 +1,20 @@
+<div id="viewallstaff" class="table-responsive">
+    <table class="table  table-hover table-bordered" >
+      <tr style=" background-color: #054d95; color: rgb(235, 240, 243);">
+          <th  >STAFF ID</th>
+          <th>USER NAME</th>
+          <!-- <th>REMOVE STAFF</th> -->
+      </tr>
+      <tbody >
+      <tr *ngFor= "let staff of staffMembers" class="text-center">
+          <td >{{staff.staffId}}</td>
+          <td >{{staff.user.username}}</td>
+          <!-- <td ><i class="bi bi-trash-fill" (click)="delete(staff)"></i></td> -->
+      </tr>
+      <tr *ngIf = "staffMembers.length===0">
+          <td colspan="3" class="text-align-center" >Staff members not found</td>
+ 
+      </tr>
+    </tbody>
+    </table> 
+</div>

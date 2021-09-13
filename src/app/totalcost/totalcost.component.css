@@ -1,0 +1,15 @@
+table{
+    width: 95%;
+    margin: 0 auto;
+    background-color: #fff;
+    max-height: 500px;
+    
+    text-align: center;
+    /* position: relative; */
+}
+h3{
+    color: #054d95;  
+  }
+  th{
+      font-weight: normal;
+  }

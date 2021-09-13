@@ -1,0 +1,57 @@
+<div id="allCourses">
+    <div class="table-responsive">
+        <table id="title">
+            <tr>
+                <td>
+                    <label style=" color: #054d95;" for="searchCourse">Courses</label>
+                </td>
+                <td>
+                    <input type="text" style="width: 70%; float:right" class="form-control"
+            id="searchCourse" placeholder="Search Course" [(ngModel)]="courseSearch">
+                </td>
+            </tr>
+
+        </table>   
+    </div>
+    <div class="table-responsive">
+    <table class="table table-hover" *ngIf="course && course.length > 0  else elseBlock"
+        style="width:95%; margin: auto; max-height: 500px;">
+        <thead style="background-color:  #054d95; text-align: center;">
+            <tr style="color: white;">
+                <th>COURSE ID</th>
+                <th>COURSE NAME</th>
+                <th>COURSE DURATION</th>
+                <th>COURSE START DATE</th>
+                <th>COURSE END DATE</th>
+                <th>COURSE FEE (₹)</th>
+                <th *ngIf="isUniversityStaff()">UPDATE</th>
+                <th *ngIf="isUniversityStaff()">DELETE</th>
+                <th *ngIf="!isUniversityStaff() && !isAdmissionCommitteeMember()"></th>
+            </tr>
+        </thead>
+        <tbody style="text-align: center;">
+            <tr *ngFor="let c of course | searchCourse:courseSearch" style="text-align: center;">
+                <td (click)="viewCourse(c)">{{c.courseId}}</td>
+                <td (click)="viewCourse(c)">{{c.courseName}}</td>
+                <td (click)="viewCourse(c)">{{c.courseDuration}}</td>
+                <td (click)="viewCourse(c)">{{c.courseStartDate}}</td>
+                <td (click)="viewCourse(c)">{{c.courseEndDate}}</td>
+                <td (click)="viewCourse(c)">{{c.courseFees}}</td>
+                <td *ngIf="isUniversityStaff()">
+                    <i class="bi bi-pencil" (click)=update(c)></i>
+                </td>
+                <td *ngIf="isUniversityStaff()">
+                    <i class="bi bi-trash" style="color: red;" (click)=delete(c)></i>
+                </td>
+                <td *ngIf="!isUniversityStaff() && !isAdmissionCommitteeMember()">
+                    <button type="button" class="btn btn-primary" style=" background-color: #054d95;"
+                        (click)="apply(c)"><b>Apply</b></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ng-template #elseBlock>
+        <h4 align="center"> There are no courses to display! </h4>
+    </ng-template>
+</div>
+</div>

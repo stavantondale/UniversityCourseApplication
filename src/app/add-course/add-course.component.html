@@ -1,0 +1,61 @@
+<!-- Course Adding form -->
+<div class="add-course-page">
+  <form (ngSubmit)="onSubmit()">
+    <h3>Add New Course</h3>
+    <div class="form-group">
+      <label for="name">Course Name<span class="required-field">*</span></label>
+      <input [(ngModel)]="course.courseName" minlength="5" type="text" class="form-control" #courseName="ngModel"
+        placeholder="Course Name" name="courseName" required>
+      <div class="text-danger" *ngIf="courseName.touched && courseName.errors?.required">
+        <label for="courseName">Course name cannot be empty.</label>
+      </div>
+      <div class="text-danger" *ngIf="courseName.errors?.minlength">
+        <label for="courseName">Course name needs to have minimum 5 characters.</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="startDate">Course Start Date<span class="required-field">*</span></label>
+      <input [(ngModel)]="course.courseStartDate" type="date" class="form-control" placeholder="Course Start Date"
+        name="courseStartDate" required>
+    </div>
+    <div class="form-group">
+      <label for="endDate">Course End Date<span class="required-field">*</span></label>
+      <input [(ngModel)]="course.courseEndDate" type="date" class="form-control" #courseEndDate="ngModel" placeholder="Course End Date"
+        name="courseEndDate" required>
+    </div>
+    <div class="form-group">
+      <label for="duration">Course Duration (Months)<span class="required-field">*</span></label>
+      <input pattern="[0-9]{1}" min="1" max="60" [(ngModel)]="course.courseDuration" type="number"
+        #courseDuration="ngModel" class="form-control" placeholder="Course Duration (Months)" name="courseDuration"
+        required>
+      <div class="text-danger" *ngIf="courseDuration.touched && courseDuration.errors?.required">
+        <label for="courseDuration">Course duration cannot be empty.</label>
+      </div>
+      <div class="text-danger" *ngIf="courseDuration.errors?.min">
+        <label for="courseDuration">Course duration atleast have 1 month.</label>
+      </div>
+      <div class="text-danger" *ngIf="courseDuration.errors?.max">
+        <label for="courseDuration">Course duration cannot exceed than 60 months.</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="fee">Course Fee (₹)<span class="required-field">*</span></label>
+      <input [(ngModel)]="course.courseFees" min="1" type="number" class="form-control" #courseFees="ngModel" placeholder="Course Fee (₹)"
+        name="courseFees" required>
+      <div class="text-danger" *ngIf="courseFees.touched && courseFees.errors?.required">
+        <label for="courseFees">Course fees cannot be empty.</label>
+      </div>
+      <div class="text-danger" *ngIf="courseFees.errors?.min">
+        <label for="courseFees">Course fees cannot be zero.</label>
+      </div>
+    </div>
+    <!--
+      <div class="form-group">
+        <label>Course Thumbnail<span class="required-field">*</span></label>
+        <input type="file" id="course-pic" name="channel-img" class="form-control">
+        <label for="course-pic" class="choose-icon"><i class="fa fa-camera" aria-hidden="true"></i></label>
+      </div>
+      -->
+    <button type="submit" class="btn btn-success">Add Course</button>
+  </form>
+</div>

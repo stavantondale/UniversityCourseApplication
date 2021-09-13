@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  
+    <div class="update-applicant-page">
+    <br>
+    <form class="update-applicant-page" #applicantForm="ngForm"  (ngSubmit)="updateApplicant()" >
+      <h3 my-10>Update Details</h3>
+      <div class="form-group">
+        <div class="form-group ">
+          <label for="applicantId">Applicant Id</label>
+          <!-- <p>{{applicant.applicantId}}</p> -->
+          <input readonly required [(ngModel)]="applicant.applicantId" name="applicantId" #applicantId="ngModel" type="number" class="form-control" id="applicantId" > 
+          <!-- <div class="text-danger" *ngIf="applicantId.touched && !applicantId.valid"> ApplicantId cannot be Empty </div> -->
+        </div>
+
+        <div class="form-group ">
+          <label for="username">Username</label>
+          <!-- <p>{{applicant.user.username}}</p> -->
+          <input readonly required [(ngModel)]="applicant.user.username" name="username" #username="ngModel" type="text" class="form-control" id="username" >
+          <!-- <div class="text-danger" *ngIf="username.touched && !username.valid"> Username cannot be Empty and it must be unique</div>  -->
+        </div>
+  
+        <div class="form-group ">
+          <label for="applicantName">Applicant Name<span class="required-field">*</span></label>
+          <input required [(ngModel)]="applicant.applicantName" name="applicantName" #applicantName="ngModel" type="text" class="form-control" id="applicantName" pattern="^[a-zA-Z ]+$" >
+          <div class="text-danger" *ngIf=" applicantName.errors?.required  && applicantName.touched"> 
+           <label for="applicantName">  Name cannot be empty </label>
+          </div>
+          <div class="text-danger" *ngIf="applicantName.errors?.pattern"> 
+            <label for="applicantName">  Name is Invalid </label>
+           </div>
+        </div>
+  
+  
+        <div class="form-group ">
+          <label for="password">Password<span class="required-field">*</span></label>
+          <input required [(ngModel)]="applicant.user.password" name="password" type="password" class="form-control" autocomplete="false" id="password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" #password="ngModel"> 
+          <div class="text-danger" *ngIf="password.errors?.pattern && password.touched "> 
+            <label for="password"> Password must contain at least one Capital letter(A-z) and small letters (a-z),<br> one Special Symbol ,<br> one number(0-9) ,<br> and must be at least 8 characters in length. </label>
+           </div>
+           <div class="text-danger" *ngIf="password.errors?.required && password.touched"> 
+            <label for="firsname">  Password is required </label>
+           </div>
+        </div>
+  
+        <div class="form-group ">
+          <label for="mobilenumber">Mobile Number<span class="required-field">*</span></label>
+          <input required [(ngModel)]="applicant.mobileNumber"  name="mobilenumber" #mobileNumber="ngModel"  type="text" class="form-control" id="mobilenumber" pattern="^[789]\d{9}$">
+          <div class="text-danger" *ngIf="mobileNumber.errors?.pattern "> <label for="mobilenumbererror">Must be a 10 digit number</label> </div>
+          <div class="text-danger" *ngIf="mobileNumber.touched && !mobileNumber.valid "> <label for="mobilenumbererror"> Mobile number cannot be
+            empty</label>  </div>
+        </div>
+  
+      
+      <div class="form-group">
+        <label for="degree">Degree<span class="required-field">*</span></label>
+        <select [(ngModel)]="applicant.applicantDegree" name="degree" class="custom-select " id="degree" required #degree="ngModel">
+          <option value="">Choose...</option>
+              <option value="BE">BE</option>
+              <option value="ME">ME</option>
+              <option value="MCA">MCA</option>
+              <option value="MBBS">MBBS</option>
+              <option value="BSc">BSc</option>
+              <option value="MSc">MSc</option>
+              <option value="BCom">BCom</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="coursesel">Course Selected</label>
+        <input readonly type="text" [(ngModel)] = "course.courseName" name="courseName" #courseName="ngModel" class="form-control" id="courseName">
+        
+      </div>
+      
+      <div class="form-group ">
+        <label for="gpercentage">Graduation Percentage<span class="required-field">*</span></label>
+        <input required [(ngModel)]="applicant.applicantGraduationPercent" name="gpercentage" type="number" min="0" max="100"  class="form-control" id="gpercentage" placeholder="Enter percentage out of 100" #gpercentage="ngModel">
+        <div class="text-danger" *ngIf="gpercentage.value > 100  || gpercentage.value < 0  "> <label for="percentageerror">Percentage cannot be
+          greater that 100 or less then 0</label> </div>
+
+      </div>
+   
+      <button type="submit" class="btn btn-primary my-3"  [disabled]="applicantForm.invalid" > Update</button> 
+      <button (click)="deleteApplicant()" type="button" class="btn btn-danger my-3" > Delete</button>
+      
+  
+    </div>
+    </form>
+  </div>
+    <br>
+    <br>
+  
+  
+</body>
+</html>

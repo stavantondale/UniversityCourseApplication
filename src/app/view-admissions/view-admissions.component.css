@@ -1,0 +1,26 @@
+th{
+    font-weight: normal;
+}
+thead{
+    background-color: #054d95;
+    color: #fff;
+}
+h3{
+  color: #054d95;  
+}
+ table{
+     width: 95%;
+     margin: 0 auto;
+     background-color: #fff;
+     max-height: 500px;
+     /* position: relative; */
+ }
+
+ i{
+     cursor: pointer;
+ }
+
+ @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    
+  }

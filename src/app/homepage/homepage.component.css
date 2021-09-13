@@ -1,0 +1,151 @@
+
+  .viewcourses{
+    margin-top: 20%;
+    margin-bottom: 5%;
+    text-align: center;
+  }
+  .serch{
+    background: #e0064f; 
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  .serch:hover{
+    background-color: white;
+    color: #0141a0;
+  }
+  
+  #viewcourses{
+    background-color:#053072;
+    border-style: solid outset;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    
+    border: 2px solid #0141a0;
+    border-radius: 12px;
+   
+   
+    color: white;
+  }
+  .carousel-inner img {
+    width: 100%;
+    height: 400px;
+  }
+  .container{
+    margin-top: 1%;
+    height: 500px;
+    margin-bottom: 1%;
+  }
+  .bottom-left {
+    
+    position: absolute;
+  top: 8px;
+  left: 16px;
+    background: rgba(4, 136, 197, 0.73);
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    font-size: 26px;
+    
+  }
+  .top-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    background: rgba(4, 41, 145, 0.521);
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    font-size: 26px;
+  }
+  
+
+  #getstarted{
+    height: 200px;
+    text-align: center;
+    margin-top: 100px;
+  }
+  #aboutus{
+    height: 200px;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
+  #getstarted .p{
+    font-size: 25px;
+  }
+  #name{
+    
+      text-align: center;
+      color: #0141a0;
+      font-weight:500 ;
+      font-size: 48px;
+   
+  }
+  
+  .counter-up{
+    background: white;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  .counter-up .content{
+    display: flex;
+    width:100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .content .box{
+    width: calc(25% -30px);
+    border: 1px dashed #0141a0;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #0141a0;
+    flex-direction: column;
+
+  }
+
+  .content .box .icon{
+    font-size: 48px;
+    color: #0141a0;
+
+  }
+
+  .content .box .counter{
+    font-size: 50px;
+    color: #0141a0;
+    font-weight: 500;
+    font-family: sans-serif;
+  }
+  .content .box .text{
+    color: #0141a0;
+    font-weight: 400;
+  }
+
+  @media (max-width:100%){
+    .counter-up{
+      width: auto;
+      padding: 50px 50px 0 50px;
+
+    }
+    .content .box{
+      width: calc(50%-30px);
+      margin-bottom: 50px;
+    }
+  }
+  @media (max-width:1036px){
+    .content .box{
+     width: 100%;
+
+    }}

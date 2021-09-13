@@ -1,20 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/services/login.service';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor(private loginService:LoginService) { }
+username:string;
+  constructor(private loginService:LoginService) {
+    
+   }
 
   ngOnInit(): void {
+    
   }
  
   isUserLoggedIn():boolean{
-    return this.loginService.isUserLoggedIn();
+    let isLoggedIn= this.loginService.isUserLoggedIn();
+    if(isLoggedIn){
+      this.username=sessionStorage.getItem("username");
+    }
+    return isLoggedIn;
   }
 
   isApplicant():boolean{
@@ -28,4 +36,6 @@ export class NavbarComponent implements OnInit {
   isUniversityStaff():boolean{
     return this.loginService.isUniversityStaff();
   }
+  
 }
+

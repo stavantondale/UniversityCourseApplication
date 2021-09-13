@@ -1,0 +1,48 @@
+<!-- <p>member-home works!</p> -->
+<div class="member-login-home">
+    <div class="card">
+        <div class="card-body">
+    <label for="welcomeMsg">Welcome back {{adminName}} :) </label></div>
+</div>
+<div class="row">
+    <div class="col-sm-4" style="margin-left: 5cm;">
+      <div class="card" style=" height: 13rem;" >
+        <div class="card-body">
+          <h5 class="card-title">View Admissions</h5>
+          <p class="card-text">There are some admissions still pending,Go through them by following link.</p>
+          <a (click)=toAdmission() class="btn btn-primary">View All Admissions</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">View Contact details of Other Committee Members.</h5>
+          <p class="card-text">In case of emergency you can drop a mail to other committee memebers and seek help. </p>
+          <a   (click)=toContacts() class="btn btn-primary">Committee Members Contact</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-4" style="margin-left: 5cm;">
+      <div class="card" >
+        <div class="card-body">
+          <h5 class="card-title">Add Another Committee Member</h5>
+          <p class="card-text">you can add another committee member as per convenience and need.</p>
+          <a (click)=toAdd() class="btn btn-primary">Add Committee Member</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Update Details</h5>
+          <p class="card-text">In case of updatation of new information or password change you can use following link. </p>
+          <a (click)=toUpdate() class="btn btn-primary">Update Information</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>

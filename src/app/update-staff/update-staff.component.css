@@ -1,0 +1,45 @@
+.signup-page h3 {
+    margin: 20px 0px 30px;
+    padding: 0px 0px 25px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    color: #054d95;
+  }
+  
+  .signup-page form {
+    margin: 30px auto;
+    border: 1px solid #e4e4e4;
+    width: 500px;
+    padding: 10px 25px;
+    border-radius: 10px;
+    box-shadow: 0 0px 6px rgba(173, 173, 173, 0.5);
+  }
+  .signup-page a {
+  color: #054d95;
+  }
+  .signup-page .btn {
+    width: 100%;
+    margin: 10px 0px;
+    font-size: 18px;
+    background-color: #054d95;
+    border: none;
+  }
+  .signup-page .btn:hover{
+  opacity: 0.8;
+  }
+  
+  .signup-page .required-field {
+    color: #F44336;
+    font-size: 17px;
+    margin: 0px 2px;
+  }
+  .signup-page label {
+    margin-bottom: 3px;
+  }
+  
+  /* Responsive CSS */
+  @media(max-width: 767px){
+  .signup-page form {
+    width: 90%;
+  }
+  }

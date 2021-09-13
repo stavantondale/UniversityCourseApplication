@@ -1,0 +1,26 @@
+
+        <div class="table-responsive">
+        <table class="table table-striped table-hover" >
+            <thead style="background-color:  #054d95; text-align: center;">
+            <tr style="color: white;">
+                <th>ADMIN ID</th>
+                <th>ADMIN NAME</th>
+                <th>ADMIN CONTACT</th>
+                <!-- <th>UPDATE</th>
+                <th>DELETE</th> -->
+            </tr>
+        </thead>
+            <tr *ngFor="let m of memberlist" style="text-align: center;">
+                <td>{{m.adminId}}</td>
+                <td>{{m.adminName }}</td>
+                <td>{{m.adminContact}}</td>
+               <!-- <td>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"  ></i>
+               </td>
+               <td><i class="fa fa-trash" aria-hidden="true"  (click)=delete(m)></i></td> -->
+            </tr>
+            <tr *ngIf="!memberlist || memberlist.length==0" style="text-align: center;">
+                <td colspan="3">No employees to display</td>
+        
+            </tr>
+        </table>

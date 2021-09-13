@@ -1,0 +1,107 @@
+
+  <div class="add-applicant-page">
+    <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Your form has been submitted</strong>
+      <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+
+    <div class="add-applicant-page">
+
+      <br>
+      <form class="add-applicant-page " #applicantForm="ngForm" (ngSubmit)="addApplicant()">
+        <h3>Registration Form</h3>
+        <div class="form-group">
+
+          <div class="form-group ">
+            <label for="applicantName">Applicant Name<span class="required-field">*</span></label>
+            <input required [(ngModel)]="applicant.applicantName" name="applicantName" #applicantName="ngModel" type="text"
+              class="form-control" id="applicantName" pattern="^[a-zA-Z ]+$" minlength="3">
+            <div class="text-danger" *ngIf="applicantName.touched && applicantName.errors?.required"> 
+              <label for="applicantName">Applicant name cannot be empty</label>
+            </div>
+            <div class="text-danger" *ngIf="applicantName.errors?.pattern "> 
+              <label for="applicantName">Applicant name is invalid. Please enter only alphabets</label>
+            </div>
+          </div>
+
+
+          <div class="form-group ">
+            <label for="username">Username<span class="required-field">*</span></label>
+            <input required [(ngModel)]="applicant.user.username" name="username" #username="ngModel" type="text"
+              class="form-control" id="username">
+            <div class="text-danger" *ngIf="username.touched && !username.valid">
+              <label for="username"> Username cannot be empty and it must be unique</label>
+            </div>
+          </div>
+
+          <div class="form-group ">
+            <label for="password">Password<span class="required-field">*</span></label>
+            <input required [(ngModel)]="applicant.user.password" name="password" type="password" class="form-control"
+              #password="ngModel" id="password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" >
+              <div class="text-danger" *ngIf="password.errors?.pattern && password.touched "> 
+                <label for="password"> Password must contain at least one Capital letter(A-z) and small letters (a-z),<br> one Special Symbol ,<br> one number(0-9) ,<br> and must be at least 8 characters in length. </label>
+               </div>
+               <div class="text-danger" *ngIf="password.errors?.required && password.touched"> 
+                <label for="password">  Password is required </label>
+               </div>
+          </div>
+
+          <div class="form-group ">
+            <label for="conpassword">Confirm Password<span class="required-field">*</span></label>
+            <input type="password" class="form-control" id="userrepassword" name="confirmpassword" #confirmPassword = "ngModel" (keyup) = "passwordMatchChecker(password.value, confirmPassword.value)" ngModel required>
+            
+            <span *ngIf="!isPasswordMatched && !confirmPassword.pristine" class="text-danger">Password is not matching</span>
+            <div class="text-danger" *ngIf="confirmPassword.touched && !confirmPassword.valid && !confirmPassword.errors?.pattern"><label for="confirmPassworderror"> Confirm Password cannot be empty </label></div>
+          </div>
+
+          <div class="form-group">
+            <label for="mobilenumber">Mobile Number<span class="required-field">*</span></label>
+            <input required [(ngModel)]="applicant.mobileNumber" name="mobilenumber" #mobileNumber="ngModel" type="text"
+              class="form-control" id="mobilenumber" pattern="^[789]\d{9}$">
+            <div class="text-danger" *ngIf="mobileNumber.errors?.pattern "> <label for="mobilenumbererror">Must be a 10 digit number</label> </div>
+            <div class="text-danger" *ngIf="mobileNumber.touched && !mobileNumber.valid && !mobileNumber.errors?.pattern  "> <label for="mobilenumbererror"> Mobile number cannot be
+              empty</label>  </div>
+          </div>
+
+
+          <div class="form-group ">
+            <label required for="degree">Degree<span class="required-field">*</span></label>
+            <select [(ngModel)]="applicant.applicantDegree" name="degree" class="custom-select " id="degree" required>
+              <option value="">Choose...</option>
+              <option value="BE">BE</option>
+              <option value="ME">ME</option>
+              <option value="MCA">MCA</option>
+              <option value="MBBS">MBBS</option>
+              <option value="BSc">BSc</option>
+              <option value="MSc">MSc</option>
+              <option value="BCom">BCom</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Course Selected<span class="required-field">*</span></label>
+            <input [(ngModel)]="course.courseName" type="text" class="form-control" name="name" readonly="readOnly">
+          </div>
+
+          <div class="form-group ">
+            <label for="gpercentage">Graduation Percentage<span class="required-field">*</span></label>
+            <input required [(ngModel)]="applicant.applicantGraduationPercent" name="gpercentage" type="number" min="0"
+              max="100" class="form-control" id="gpercentage" placeholder="Enter percentage out of 100"
+              #gpercentage="ngModel">
+            <div class="text-danger" *ngIf="gpercentage.value > 100  || gpercentage.value < 0  "> <label for="percentageerror">Percentage cannot be
+              greater that 100 or less then 0</label> </div>
+
+
+          </div>
+
+          <button type="submit" class="btn btn-primary my-3" [disabled]="applicantForm.invalid"> Register</button>
+
+        </div>
+      </form>
+    </div>
+    <br>
+    <br>
+  </div>

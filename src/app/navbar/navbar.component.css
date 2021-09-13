@@ -1,0 +1,48 @@
+.navbar { background-color: #054d95; }
+
+
+.navbar .navbar-nav .nav-link { color: rgb(235, 240, 243);
+font-size: 18px; 
+font-weight: 500;}
+
+.bi{
+    color: white;
+    font-size: 25px;
+}
+.search input[type=text]{
+    width:300px;
+    height:25px;
+    border-radius:25px;
+    border: none;
+}
+      
+.search{
+   font: centre;
+    margin:7px;
+}
+      
+.search button{
+    background-color: #054d95;
+    color: #f2f2f2;
+    
+    padding: 5px 10px;
+    margin-right: 16px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+} 
+#Course{
+    width: 40px;
+  height: 50px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+#home{
+    color: white;
+}
+

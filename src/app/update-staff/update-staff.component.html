@@ -1,0 +1,28 @@
+<div class="signup-page" >
+    <form #updateStaffForm = "ngForm" class="was-validated" (ngSubmit)="onSubmit(updateStaffForm.value)">
+      <h3>Update Staff</h3>
+      <div class="form-group">
+        <label for="staffId">Staff Id</label><br>
+        <input type="number" class="form-control" id="userstaffId" name="staffId" #staffId = "ngModel" [(ngModel)]= " universitystaffmember.staffId" ngModel readonly>
+        <div id="errorMessage" *ngIf="staffId.invalid && staffId.touched">
+         <span *ngIf="staffId.errors?.required">Staff Id is required</span>
+     </div>
+    </div>
+        <div class="form-group">
+          <label for="user">Username</label>
+          <label class="text-danger">*</label><br>
+          <input type="text" class="form-control" id="user" name="username" pattern="[a-zA-Z0-9_.]*" #username = "ngModel" [(ngModel)]= " universitystaffmember.user.username" ngModel required >
+          <div id="errorMessage" *ngIf="username.invalid && username.touched">
+              <span *ngIf="username.errors?.required" class="text-danger" >Username is required</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="userpassword">Password</label><br>
+          <input type="password" autocomplete="false" class="form-control" id="userpassword" name="password" #password = "ngModel" [(ngModel)]= " universitystaffmember.user.password" ngModel required>
+          <div id="errorMessage" *ngIf="password.invalid && password.touched">
+            <span *ngIf="password.errors?.required" class="text-danger">Password is required</span>
+          </div>
+        </div>
+        <button type="submit" [disabled]="updateStaffForm.invalid"  class="btn btn-primary">Submit</button>
+      </form>
+</div>
