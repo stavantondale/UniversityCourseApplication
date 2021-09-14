@@ -33,6 +33,7 @@ export class UpdateStaffComponent implements OnInit {
   }
   handleReceiveData(data){
    this.universitystaffmember=data;
+   this.universitystaffmember.user.password="";
    console.log(this.universitystaffmember);
   }
 

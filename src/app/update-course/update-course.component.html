@@ -4,7 +4,7 @@
 
 <!-- Course updating form -->
 <div class="update-course-page">
-  <form  (ngSubmit) ="onUpdate()">
+  <form #updateCourseForm="ngForm" (ngSubmit) ="onUpdate()">
       <h3>Update Course</h3>
       <div class="form-group">
         <label for="name">Course ID<span class="required-field">*</span></label>
@@ -24,20 +24,24 @@
       </div>     
     <div class="form-group">
       <label for="startDate">Course Start Date<span class="required-field">*</span></label>
-      <input [(ngModel)]="courseObj.courseStartDate" type="date" class="form-control" placeholder="Course Start Date" name="courseStartDate">
+      <input [(ngModel)]="courseObj.courseStartDate" min="{{todayDate}}" type="date" class="form-control" placeholder="Course Start Date"
+      name="courseStartDate" (focusout)= "addMonth(courseStartDate.value);monthDiff(courseStartDate.value, courseEndDate.value)" #courseStartDate='ngModel' required>
     </div>  
     <div class="form-group">
       <label for="endDate">Course End Date<span class="required-field">*</span></label>
-      <input [(ngModel)]="courseObj.courseEndDate" type="date" class="form-control" placeholder="Course End Date" name="courseEndDate">
+      <input [(ngModel)]="courseObj.courseEndDate" min="{{endDateLimit}}" type="date" class="form-control" #courseEndDate="ngModel" placeholder="Course End Date"
+      name="courseEndDate" (focusout)= "monthDiff(courseStartDate.value, courseEndDate.value)" required>
     </div>
     <div class="form-group">
       <label for="duration">Course Duration (Months)<span class="required-field">*</span></label>
-      <input pattern="[0-9]{1}" min="1" max="60" [(ngModel)]="courseObj.courseDuration" type="number" #courseDuration="ngModel" class="form-control" placeholder="Course Duration (Months)" name="courseDuration" required>
+      <input min="1" max="60" [(ngModel)]="courseObj.courseDuration" type="number"
+      #courseDuration="ngModel" class="form-control" placeholder="Course Duration (Months)" name="courseDuration"
+      required readonly>
       <div class="text-danger" *ngIf="courseDuration.touched && courseDuration.errors?.required">
         <label for="courseDuration">Course duration cannot be empty.</label>
       </div>
       <div class="text-danger" *ngIf="courseDuration.errors?.min">
-        <label for="courseDuration">Course duration atleast have 1 month.</label>
+        <label for="courseDuration">Course atleast have 1 month duration.</label>
       </div>
       <div class="text-danger" *ngIf="courseDuration.errors?.max">
         <label for="courseDuration">Course duration cannot exceed than 60 months.</label>
@@ -60,7 +64,7 @@
         <label for="course-pic" class="choose-icon"><i class="fa fa-camera" aria-hidden="true"></i></label>
       </div>
       -->
-        <button type="submit" class="btn btn-success">Update Course</button>   
+        <button [disabled]="updateCourseForm.invalid" type="submit" class="btn btn-success">Update</button>   
   </form>
 </div>
 

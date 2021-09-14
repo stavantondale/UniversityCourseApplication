@@ -34,6 +34,7 @@ import { TotalcostComponent } from './totalcost/totalcost.component';
 import { HomeApplicantComponent } from './home-applicant/home-applicant.component';
 import { MemberHomeComponent } from './member-home/member-home.component';
 import { StaffMemberHomePageComponent } from './staff-member-home-page/staff-member-home-page.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,7 @@ import { StaffMemberHomePageComponent } from './staff-member-home-page/staff-mem
     HttpClientModule,
     FormsModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthHtppInterceptorService, multi: true }],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthHtppInterceptorService, multi: true }, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

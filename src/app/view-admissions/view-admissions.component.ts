@@ -76,7 +76,6 @@ export class ViewAdmissionsComponent implements OnInit {
   }
 
   searchByCourse(courseId) {
-    //console.log(courseId);
     if (courseId) {
       this.isTableDisplayed = true;
       this.admissionService.viewAdmissionsByCourse(courseId).subscribe(

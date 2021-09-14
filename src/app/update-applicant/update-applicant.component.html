@@ -91,8 +91,9 @@
 
       </div>
    
-      <button type="submit" class="btn btn-primary my-3"  [disabled]="applicantForm.invalid" > Update</button> 
-      <button (click)="deleteApplicant()" type="button" class="btn btn-danger my-3" > Delete</button>
+      <button type="submit" class="btn btn-primary my-3"  [disabled]="applicantForm.invalid || applicant.status.toString()!=='APPLIED'" > Update</button> 
+      <p class="text-danger" *ngIf="applicant.status.toString()!=='APPLIED'">You cannot update your application after Acceptance or Rejection</p>
+      <button (click)="deleteApplicant()" type="button" class="btn btn-danger my-3" *ngIf="applicant.status.toString() =='APPLIED' " > Delete</button>
       
   
     </div>
